@@ -2,6 +2,18 @@ import React from "react";
 import  Vortex  from "./vortex";
 
 export function Login() {
+    const generateKey = async () => {
+                try {
+                    const response = await axios.post('http://localhost:3001/create-keypair')
+                    const data = response.data
+                    console.log(data)
+                    // Save key to local storage
+                    localStorage.setItem('key', data.key)
+                } catch (error) {
+                    console.error('Error generating key:', error)
+                }
+            }
+    
 
 
   return (
