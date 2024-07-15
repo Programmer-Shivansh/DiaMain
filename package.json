@@ -15,6 +15,8 @@
     "@react-three/rapier": "^1.1.1",
     "@types/three": "0.152.1",
     "axios": "^1.7.2",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.3.2",
     "leva": "^0.9.35",
     "playroomkit": "^0.0.36",
     "react": "^18.2.0",
@@ -22,6 +24,8 @@
     "react-modal": "^3.16.1",
     "react-model": "^4.3.1",
     "react-router-dom": "^6.24.1",
+    "simplex-noise": "^4.0.2",
+    "tailwind-merge": "^2.4.0",
     "three": "0.153.0",
     "three-stdlib": "^2.27.1"
   },

@@ -2,7 +2,7 @@ import Modal from "react-modal";
 import * as React from 'react';
 import { Routes, Route} from 'react-router-dom';
 import Game from "./game";
-import Login from "./components/login";
+import {Login} from "./components/login";
 
 // Set the app element for the modal
 Modal.setAppElement('#root');
