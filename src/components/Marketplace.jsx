@@ -1,20 +1,21 @@
-
 import React, { useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { Weapons } from './Weapons';
 
-const weaponsList = [
-  { name: 'Pistol', scale: [0.3, 0.3, 0.3] },
-  { name: 'Pistol2', scale: [0.3, 0.3, 0.3] },
-  { name: 'AK', scale: [0.05, 0.05, 0.05] },
-  { name: 'knife', scale: [0.1, 0.1, 0.1] },
-  { name: 'grinder', scale: [0.2, 0.2, 0.2] },
-  { name: 'scar', scale: [0.01, 0.01, 0.01] },
-  { name: 'Phenoix', scale: [0.15, 0.15, 0.15] },
-  { name: 'Snipper', scale: [0.05, 0.05, 0.05] },
-  // Add other weapons as needed
-];
+const weaponModels = {
+  Pistol: { path: '/models/Glock17.fbx', scale: [0.3, 0.3, 0.3], price: 300 },
+  Pistol2: { path: '/models/Phenoix.fbx', scale: [0.2, 0.2, 0.3], price: 350 },
+  AK: { path: '/models/AK-103.fbx', scale: [0.05, 0.05, 0.05], price: 1200 },
+  knife: { path: '/models/knife.fbx', scale: [0.1, 0.1, 0.1], price: 100 },
+  grinder: { path: '/models/grinder.fbx', scale: [0.2, 0.2, 0.2], price: 200 },
+  scar: { path: '/models/Scar.fbx', scale: [0.01, 0.01, 0.01], price: 1500 },
+  Phenoix: { path: '/models/New.fbx', scale: [0.15, 0.15, 0.15], price: 800 },
+  Snipper: { path: '/models/snipper.fbx', scale: [0.05, 0.05, 0.05], price: 1800 },
+  // Add other models as needed
+};
+
+const weaponsList = Object.keys(weaponModels).map(key => ({ name: key, ...weaponModels[key] }));
 
 const colors = [
   '#FF6F61', // Living Coral
@@ -48,6 +49,7 @@ export default function Marketplace() {
   };
 
   const handleBuyClick = (weaponName) => {
+    console.log(`Price of ${weaponName}: $${weaponModels[weaponName].price}`);
     setLockStatus((prevState) => ({
       ...prevState,
       [weaponName]: !prevState[weaponName],
@@ -65,7 +67,7 @@ export default function Marketplace() {
               onClick={() => handleWeaponSelect(weapon)}
               style={styles.listItem}
             >
-              {weapon.name}
+              {weapon.name} - ${weapon.price}
               <button
                 onClick={(e) => {
                   e.stopPropagation();
@@ -94,14 +96,12 @@ export default function Marketplace() {
           <ambientLight />
           <pointLight position={[10, 10, 10]} />
           <Weapons weapon={selectedWeapon} color={selectedColor} />
-
           <OrbitControls />
         </Canvas>
       </div>
     </div>
   );
 }
-
 
 const styles = {
   container: {
@@ -168,4 +168,3 @@ const styles = {
     overflow: 'hidden', // Ensure the canvas doesn't overflow its container
   },
 };
-

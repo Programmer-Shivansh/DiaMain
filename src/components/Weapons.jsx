@@ -3,14 +3,14 @@ import { useFBX } from '@react-three/drei';
 import { MeshStandardMaterial } from 'three';
 
 const weaponModels = {
-  Pistol: { path: '/models/Glock17.fbx', scale: [0.3, 0.3, 0.3] },
-  Pistol2: { path: '/models/Phenoix.fbx', scale: [0.2, 0.2, 0.3] },
-  AK: { path: '/models/AK-103.fbx', scale: [0.05, 0.05, 0.05] },
-  knife: { path: '/models/knife.fbx', scale: [0.1, 0.1, 0.1] },
-  grinder: { path: '/models/grinder.fbx', scale: [0.2, 0.2, 0.2] },
-  scar: { path: '/models/Scar.fbx', scale: [0.01, 0.01, 0.01]},
-  Phenoix: { path: '/models/New.fbx', scale: [0.15, 0.15, 0.15] },
-  Snipper: { path: '/models/snipper.fbx', scale: [0.05, 0.05, 0.05] },
+  Pistol: { path: '/models/Glock17.fbx', scale: [0.3, 0.3, 0.3], price: 300 },
+  Pistol2: { path: '/models/Phenoix.fbx', scale: [0.2, 0.2, 0.3], price: 350 },
+  AK: { path: '/models/AK-103.fbx', scale: [0.05, 0.05, 0.05], price: 1200 },
+  knife: { path: '/models/knife.fbx', scale: [0.1, 0.1, 0.1], price: 100 },
+  grinder: { path: '/models/grinder.fbx', scale: [0.2, 0.2, 0.2], price: 200 },
+  scar: { path: '/models/Scar.fbx', scale: [0.01, 0.01, 0.01], price: 1500 },
+  Phenoix: { path: '/models/New.fbx', scale: [0.15, 0.15, 0.15], price: 800 },
+  Snipper: { path: '/models/snipper.fbx', scale: [0.05, 0.05, 0.05], price: 1800 },
   // Add other models as needed
 };
 
