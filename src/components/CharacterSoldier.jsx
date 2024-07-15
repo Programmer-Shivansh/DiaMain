@@ -9,7 +9,8 @@ import { SkeletonUtils } from "three-stdlib";
 const WEAPONS = [
   "GrenadeLauncher",
   "AK",
-  "Knife_1",
+  "knife",
+
   "Knife_2",
   "Pistol",
   "Revolver",

@@ -17,41 +17,65 @@ function App() {
   const [downgradedPerformance, setDowngradedPerformance] = useState(false);
   const [isMarketplaceOpen, setIsMarketplaceOpen] = useState(false);
 
+
+  const openMarketplace = () => {
+    setIsMarketplaceOpen(true);
+  };
+
+  const closeMarketplace = () => {
+    setIsMarketplaceOpen(false);
+  };
+
+
   return (
     <>
       <Loader />
       <Leaderboard />
       <button
         style={{
-          position: 'absolute',
-          top: '10px',
-          right: '10px',
-          padding: '10px',
-          zIndex: 1000
+
+          position: 'fixed',
+          bottom: '20px', // Position at the bottom with 20px offset
+          left: '50%', // Center horizontally
+          transform: 'translateX(-50%)', // Centering trick
+          padding: '10px 20px',
+          zIndex: 1000,
+          backgroundColor: '#4CAF50',
+          color: 'white',
+          border: 'none',
+          borderRadius: '4px',
+          cursor: 'pointer',
         }}
-        onClick={() => {setIsMarketplaceOpen(true)
-          
-        }}
+        onClick={openMarketplace}
+
       >
         Open Marketplace
       </button>
       <Modal
         isOpen={isMarketplaceOpen}
-        onRequestClose={() => setIsMarketplaceOpen(false)}
+        onRequestClose={closeMarketplace}
         contentLabel="Marketplace Modal"
         style={{
+          overlay: {
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            zIndex: 1001,
+          },
+
           content: {
             top: '50%',
             left: '50%',
             right: 'auto',
             bottom: 'auto',
-            marginRight: '-50%',
+
             transform: 'translate(-50%, -50%)',
             width: '80%',
             height: '80%',
-            backgroundColor:'white',
-            zIndex:1001,
-
+            backgroundColor: 'white',
+            border: 'none',
+            borderRadius: '8px',
+            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+            overflow: 'auto',
+            WebkitOverflowScrolling: 'touch',
 
           },
         }}
@@ -62,9 +86,16 @@ function App() {
             top: '10px',
             right: '10px',
             padding: '10px',
-            zIndex: 1000
+
+            zIndex: 1000,
+            backgroundColor: '#f44336',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
           }}
-          onClick={() => setIsMarketplaceOpen(false)}
+          onClick={closeMarketplace}
+
         >
           Close Marketplace
         </button>
