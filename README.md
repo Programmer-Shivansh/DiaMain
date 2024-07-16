@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/images/logo.jpeg" alt="Daichain Warfare Logo" width="50" height="50" align="left"/>
+  <img src="public/images/logo.jpeg" alt="Daichain Warfare Logo" width="100" height="90" align="left"/>
   <h1>Daichain Warfare</h1>
 </p>
 
