@@ -1,6 +1,6 @@
 <p align="center">
   <img src="public/images/logo.jpeg" alt="Daichain Warfare Logo" width="100" height="90" align="left"/>
-  <h1>Daichain Warfare</h1>
+  <h1>Diachain Warfare</h1>
 </p>
 
 Daichain Warfare leverages blockchain technology to provide a secure, transparent, and rewarding multiplayer shooter gaming experience. Integrated with the Diamante blockchain, it introduces features like secure asset ownership, provably fair gameplay mechanics via smart contracts, and a Diamante marketplace for purchasing in-game items. Our project aims to redefine player interaction and ownership rights in gaming through innovative blockchain integration.
