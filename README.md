@@ -1,12 +1,46 @@
+![Daichain Warfare Logo](public/images/logo.jpeg)
+
 # Daichain Warfare
 
 Daichain Warfare leverages blockchain technology to provide a secure, transparent, and rewarding multiplayer shooter gaming experience. Integrated with the Diamante blockchain, it introduces features like secure asset ownership, provably fair gameplay mechanics via smart contracts, and a Diamante marketplace for purchasing in-game items. Our project aims to redefine player interaction and ownership rights in gaming through innovative blockchain integration.
+
+## Table of Contents
+
+- [Features](#features)
+- [How It Works](#how-it-works)
+  - [Gameplay Interface](#gameplay-interface)
+  - [Marketplace](#marketplace)
+  - [Additional Gameplay Screenshots](#additional-gameplay-screenshots)
+- [Local Setup](#local-setup)
+- [Project Links](#project-links)
+- [Team](#team)
+- [Technologies Used](#technologies-used)
 
 ## Features
 
 - **Multiplayer Action**: Invite friends via QR code or link to play together in real-time.
 - **Real-Time Leaderboard**: Track live scores and performance rankings during gameplay.
 - **Diamante Marketplace**: Purchase guns via the Diamante blockchain and use them in-game for enhanced gameplay experiences.
+
+## How It Works
+
+### Gameplay Interface
+
+![Gameplay Interface](public/images/in-game.jpeg)
+*In this image, players can be seen engaging in a multiplayer shooter game. The leaderboard and player stats are displayed at the top.*
+
+### Marketplace
+
+![Marketplace](public/images/marketplace.jpeg)
+*Here is the in-game marketplace where players can purchase weapons using the Diamante blockchain.*
+
+### Additional Gameplay Screenshots
+
+![Gameplay Screenshot 2](public/images/game-screen.jpeg)
+*Another shot of players in action, demonstrating the dynamic environment and interactions.*
+
+![Gameplay Screenshot 3](public/images/logo.jpeg)
+*Further illustration of the multiplayer experience and interface.*
 
 ## Local Setup
 
