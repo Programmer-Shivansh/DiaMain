@@ -9,7 +9,7 @@ import { Experience } from "./components/Experience";
 import { Leaderboard } from "./components/Leaderboard";
 import Marketplace from "./components/Marketplace";
 import Modal from "react-modal";
-import PublicKeyDisplay from './components/PublicKeyDisplay';
+// import PublicKeyDisplay from './components/PublicKeyDisplay';
 
 // Set the app element for the modal
 Modal.setAppElement('#root');
@@ -34,7 +34,7 @@ function Game() {
     <>
       <Loader />
       <Leaderboard />
-      <PublicKeyDisplay publicKey={publicKey} />
+      {/* <PublicKeyDisplay publicKey={publicKey} /> */}
 
       <button
         style={{

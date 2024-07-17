@@ -4,17 +4,18 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import Game from "./game";
 import { Login } from "./components/login";
-import PublicKeyDisplay from './components/PublicKeyDisplay';
+import { useRecoilValue } from 'recoil';
+import { userDataAtom } from './atoms/public';
+
 
 function App() {
-  const publicKey = localStorage.getItem('publicKey') || '';
+  const publicKey = useRecoilValue(userDataAtom);
 
 
 
 
   return (
     <ChakraProvider>
-      <PublicKeyDisplay publicKey={publicKey} />
 
       <Routes>
         <Route path="/login" element={publicKey?<Navigate to={'/'}/>:<Login/>} />

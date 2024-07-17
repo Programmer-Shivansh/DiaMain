@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, Input, useToast } from '@chakra-ui/react';
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, Input, useToast, Spinner, Text } from '@chakra-ui/react';
 import axios from 'axios';
 
 const CreateKeyModal = ({ isOpen, onClose, handleLogin, modalType }) => {
@@ -27,6 +27,7 @@ const CreateKeyModal = ({ isOpen, onClose, handleLogin, modalType }) => {
   };
 
   const fundAccount = async () => {
+    setIsFunding(true);
     try {
       const response = await axios.post('http://localhost:3001/fund-account', { publicKey });
       const data = response.data;
@@ -37,7 +38,7 @@ const CreateKeyModal = ({ isOpen, onClose, handleLogin, modalType }) => {
         duration: 2000,
         isClosable: true,
       });
-      setIsFunding(true);
+      setIsFunding(false);
     } catch (error) {
       console.error('Error funding account:', error);
       toast({
@@ -47,6 +48,7 @@ const CreateKeyModal = ({ isOpen, onClose, handleLogin, modalType }) => {
         duration: 2000,
         isClosable: true,
       });
+      setIsFunding(false);
     }
   };
 
@@ -120,7 +122,7 @@ const CreateKeyModal = ({ isOpen, onClose, handleLogin, modalType }) => {
                 className="w-full"
                 isDisabled={isFunding}
               >
-                Fund Account
+                {isFunding ? <Spinner /> : 'Fund Account'}
               </Button>
             </>
           ) : (
@@ -152,6 +154,7 @@ const CreateKeyModal = ({ isOpen, onClose, handleLogin, modalType }) => {
 };
 
 export default CreateKeyModal;
+
 
 // import React, { useState } from 'react';
 // import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, Input, useToast } from '@chakra-ui/react';

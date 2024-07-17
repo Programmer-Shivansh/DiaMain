@@ -3,10 +3,13 @@ import Vortex from './vortex';
 import { Button, useDisclosure, useToast } from '@chakra-ui/react';
 import CreateKeyModal from './CreateKeyModal';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { userDataAtom } from '../atoms/public';
 
 export function Login() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [publicKey, setPublicKey] = useState('');
+  const [publics,setpublics]= useRecoilState(userDataAtom);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [modalType, setModalType] = useState(''); // State to differentiate modal types
   const toast = useToast();
@@ -15,6 +18,7 @@ export function Login() {
   const handleLogin = (key) => {
     if (key) {
       localStorage.setItem('publicKey', key);
+      setpublics(key); // Update the public key in the user data state
       setPublicKey(key);
       setIsLoggedIn(true);
       toast({
