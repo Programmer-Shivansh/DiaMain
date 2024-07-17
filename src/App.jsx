@@ -1,7 +1,7 @@
 // App.js
 import * as React from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Game from "./game";
 import { Login } from "./components/login";
 import { useRecoilValue } from 'recoil';
