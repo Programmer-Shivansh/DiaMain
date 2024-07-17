@@ -1,7 +1,7 @@
 // App.js
 import * as React from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import Game from "./game";
 import { Login } from "./components/login";
 import PublicKeyDisplay from './components/PublicKeyDisplay';
@@ -9,13 +9,16 @@ import PublicKeyDisplay from './components/PublicKeyDisplay';
 function App() {
   const publicKey = localStorage.getItem('publicKey') || '';
 
+
+
+
   return (
     <ChakraProvider>
       <PublicKeyDisplay publicKey={publicKey} />
 
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Game />} />
+        <Route path="/login" element={publicKey?<Navigate to={'/'}/>:<Login/>} />
+        <Route path="/" element={!publicKey?<Navigate to={'/login'}/>:<Game/>} />
       </Routes>
     </ChakraProvider>
   );
