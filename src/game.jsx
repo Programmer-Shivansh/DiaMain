@@ -9,6 +9,7 @@ import { Experience } from "./components/Experience";
 import { Leaderboard } from "./components/Leaderboard";
 import Marketplace from "./components/Marketplace";
 import Modal from "react-modal";
+import PublicKeyDisplay from './components/PublicKeyDisplay';
 
 // Set the app element for the modal
 Modal.setAppElement('#root');
@@ -16,7 +17,8 @@ Modal.setAppElement('#root');
 function Game() {
   const [downgradedPerformance, setDowngradedPerformance] = useState(false);
   const [isMarketplaceOpen, setIsMarketplaceOpen] = useState(false);
- 
+  const publicKey = localStorage.getItem('publicKey') || '';
+
 
 
   const openMarketplace = () => {
@@ -32,6 +34,8 @@ function Game() {
     <>
       <Loader />
       <Leaderboard />
+      <PublicKeyDisplay publicKey={publicKey} />
+
       <button
         style={{
 
@@ -52,7 +56,9 @@ function Game() {
       >
         Open Marketplace
       </button>
+
       <Modal
+      
         isOpen={isMarketplaceOpen}
         onRequestClose={closeMarketplace}
         contentLabel="Marketplace Modal"
@@ -102,6 +108,7 @@ function Game() {
         </button>
         <Marketplace />
       </Modal>
+
       <Canvas
         shadows
         camera={{ position: [0, 30, 0], fov: 30, near: 2 }}
@@ -127,6 +134,7 @@ function Game() {
             <Bloom luminanceThreshold={1} intensity={1.5} mipmapBlur />
           </EffectComposer>
         )}
+
       </Canvas>
     </>
   );

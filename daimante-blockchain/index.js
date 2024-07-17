@@ -5,7 +5,7 @@ const {
     Keypair,
     TransactionBuilder,
     Operation,
-    Networks
+    Networks,Asset
 } = require('diamante-base');
 const { Horizon } = require('diamante-sdk-js');
 
@@ -20,9 +20,9 @@ app.get("/",(req, res) => {
 })
 app.post('/create-keypair', (req, res) => {
     try {
-        console.log('Received request to create keypair');
+        // console.log('Received request to create keypair');
         const keypair = Keypair.random();
-        console.log('Keypair created:', keypair.publicKey(), keypair.secret());
+        // console.log('Keypair created:', keypair.publicKey(), keypair.secret());
         res.json({
             publicKey: keypair.publicKey(),
             secret: keypair.secret()
@@ -43,7 +43,7 @@ app.post('/fund-account', async (req, res) => {
             throw new Error(`Failed to activate account ${publicKey}: ${response.statusText}`);
         }
         const result = await response.json();
-        console.log(`Account ${publicKey} activated`, result);
+        // console.log(`Account ${publicKey} activated`, result);
         res.json({ message: `Account ${publicKey} funded successfully` });
     } catch (error) {
         console.error('Error in fund-account:', error);
@@ -59,8 +59,9 @@ app.post('/make-payment', async (req, res) => {
         const server = new Horizon.Server('https://diamtestnet.diamcircle.io/');
         const senderKeypair = Keypair.fromSecret(senderSecret);
         const senderPublicKey = senderKeypair.publicKey();
-
+        // console.log("first")
         const account = await server.loadAccount(senderPublicKey);
+        // console.log("first")
         const transaction = new TransactionBuilder(account, {
             fee: await server.fetchBaseFee(),
             networkPassphrase: Networks.TESTNET,
@@ -72,7 +73,7 @@ app.post('/make-payment', async (req, res) => {
             }))
             .setTimeout(30)
             .build();
-
+        // console.log("second")
         transaction.sign(senderKeypair);
         const result = await server.submitTransaction(transaction);
         console.log(`Payment made from ${senderPublicKey} to ${receiverPublicKey} with amount ${amount}`, result);
