@@ -90,7 +90,7 @@ const CreateKeyModal = ({ isOpen, onClose, handleLogin, modalType }) => {
                   <Input
                     placeholder="Public Key"
                     value={publicKey}
-                    className="bg-black text-white"
+                    className="bg-black text-black"
                     isReadOnly
                   />
                   <Button
@@ -105,7 +105,7 @@ const CreateKeyModal = ({ isOpen, onClose, handleLogin, modalType }) => {
                   <Input
                     placeholder="Private Key"
                     value={privateKey}
-                    className="bg-black text-white"
+                    className="bg-black text-black"
                     isReadOnly
                   />
                   <Button
@@ -132,7 +132,7 @@ const CreateKeyModal = ({ isOpen, onClose, handleLogin, modalType }) => {
                 placeholder="Enter Public Key"
                 value={publicKey}
                 onChange={(e) => setPublicKey(e.target.value)}
-                className="mb-4 bg-black text-white"
+                className="mb-4 bg-black text-black"
               />
               <Button
                 colorScheme="blue"
