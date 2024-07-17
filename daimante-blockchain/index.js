@@ -5,7 +5,7 @@ const {
     Keypair,
     TransactionBuilder,
     Operation,
-    Networks,Asset
+    Networks, Asset
 } = require('diamante-base');
 const { Horizon } = require('diamante-sdk-js');
 
@@ -13,7 +13,9 @@ const app = express();
 const port = 3001;
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({
+    origin: 'https://diachain-warfare.vercel.app' // Specify the frontend origin
+}));
 
 app.get("/",(req, res) => {
     res.send("Hello, World!");
