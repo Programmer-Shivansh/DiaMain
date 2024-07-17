@@ -16,11 +16,7 @@ const port = 3001;
 app.use(bodyParser.json());
 
 // Use CORS middleware with specific origin
-app.use(cors({
-    origin: 'https://diachain-warfare.vercel.app', // Allow this origin
-    methods: ['GET', 'POST'], // Allow specific methods
-    allowedHeaders: ['Content-Type'] // Allow specific headers
-}));
+app.use(cors());
 
 app.get("/",(req, res) => {
     res.send("Hello, World!");
