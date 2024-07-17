@@ -19,6 +19,8 @@ export const CharacterController = ({
   onKilled,
   onFire,
   downgradedPerformance,
+  onMouseUp,
+  onMouseDown,
   ...props
 }) => {
   const group = useRef();
@@ -101,7 +103,9 @@ export const CharacterController = ({
       };
 
       rigidbody.current.applyImpulse(impulse, true);
+      onMouseUp()
     } else {
+      onMouseDown();
       setAnimation("Idle");
     }
 
