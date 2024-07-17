@@ -12,9 +12,14 @@ const { Horizon } = require('diamante-sdk-js');
 const app = express();
 const port = 3001;
 
+// Use body-parser middleware
 app.use(bodyParser.json());
+
+// Use CORS middleware with specific origin
 app.use(cors({
-    origin: 'https://diachain-warfare.vercel.app' // Specify the frontend origin
+    origin: 'https://diachain-warfare.vercel.app', // Allow this origin
+    methods: ['GET', 'POST'], // Allow specific methods
+    allowedHeaders: ['Content-Type'] // Allow specific headers
 }));
 
 app.get("/",(req, res) => {
