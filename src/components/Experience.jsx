@@ -14,6 +14,7 @@ import { CharacterController } from "./CharacterController";
 import { Map } from "./Map";
 import axios from "axios"; // Import axios
 import { useToast } from "@chakra-ui/react"; // Import useToast
+import url from "../../url";
 
 export const Experience = ({ downgradedPerformance = false }) => {
   const [players, setPlayers] = useState([]);
@@ -88,7 +89,7 @@ export const Experience = ({ downgradedPerformance = false }) => {
 
     try {
       // Make the payment request
-      const response = await axios.post('http://localhost:3001/make-payment', {
+      const response = await axios.post(`${url}/make-payment`, {
         senderSecret: privateKey,
         receiverPublicKey: publicKey,
         amount

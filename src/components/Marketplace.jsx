@@ -4,6 +4,7 @@ import { OrbitControls } from '@react-three/drei';
 import { Weapons } from './Weapons';
 import axios from 'axios'; // Import axios
 import { useToast } from '@chakra-ui/react'; // Import useToast
+import url from '../../url';
 
 const weaponModels = {
   Pistol: { path: '/models/Glock17.fbx', scale: [0.3, 0.3, 0.3], price: 300 },
@@ -68,7 +69,7 @@ export default function Marketplace() {
             amount: price
         });
 
-        const response = await axios.post('http://localhost:3001/make-payment', {
+        const response = await axios.post(`${url}/make-payment`, {
             senderSecret: privateKey,
             receiverPublicKey: publicKey,
             amount: price

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, Input, useToast, Spinner, Text } from '@chakra-ui/react';
 import axios from 'axios';
+import url from '../../url';
 
 const CreateKeyModal = ({ isOpen, onClose, handleLogin, modalType }) => {
   const [publicKey, setPublicKey] = useState('');
@@ -10,7 +11,7 @@ const CreateKeyModal = ({ isOpen, onClose, handleLogin, modalType }) => {
 
   const generateKeys = async () => {
     try {
-      const response = await axios.post('http://localhost:3001/create-keypair');
+      const response = await axios.post(`${url}/create-keypair`);
       const data = response.data;
       setPublicKey(data.publicKey);
       setPrivateKey(data.secret);
@@ -29,7 +30,7 @@ const CreateKeyModal = ({ isOpen, onClose, handleLogin, modalType }) => {
   const fundAccount = async () => {
     setIsFunding(true);
     try {
-      const response = await axios.post('http://localhost:3001/fund-account', { publicKey });
+      const response = await axios.post(`${url}/fund-account`, { publicKey });
       const data = response.data;
       toast({
         title: 'Account Funded',
