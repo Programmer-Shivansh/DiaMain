@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 
 // Use CORS middleware with specific origin
 app.use(cors({
-    origin: 'https://diachain-warfare.vercel.app', // Allow this origin
+    origin: 'https://diachain-warfare.vercel.app/', // Allow this origin
     methods: ['GET', 'POST'], // Allow specific methods
     allowedHeaders: ['Content-Type'] // Allow specific headers
 }));
