@@ -17,9 +17,17 @@ Modal.setAppElement('#root');
 function Game() {
   const [downgradedPerformance, setDowngradedPerformance] = useState(false);
   const [isMarketplaceOpen, setIsMarketplaceOpen] = useState(false);
+  const [isJoyStickClicked , setJoyStickClicked] = useState(true);
   const publicKey = localStorage.getItem('publicKey') || '';
 
 
+  const onMouseUp = ()=>{
+    setJoyStickClicked(false);
+  }
+
+  const onMouseDown = ()=>{
+    setJoyStickClicked(true);
+  }
 
   const openMarketplace = () => {
     setIsMarketplaceOpen(true);
@@ -35,8 +43,9 @@ function Game() {
       <Loader />
       <Leaderboard />
       {/* <PublicKeyDisplay publicKey={publicKey} /> */}
-
-      <button
+      {
+        isJoyStickClicked && 
+        <button
         style={{
 
           position: 'fixed',
@@ -56,6 +65,9 @@ function Game() {
       >
         Open Marketplace
       </button>
+
+      }
+      
 
       <Modal
       
@@ -125,7 +137,7 @@ function Game() {
         />
         <Suspense>
           <Physics>
-            <Experience downgradedPerformance={downgradedPerformance} />
+            <Experience downgradedPerformance={downgradedPerformance} onMouseUp = {onMouseUp} onMouseDown = {onMouseDown} />
           </Physics>
         </Suspense>
         {!downgradedPerformance && (

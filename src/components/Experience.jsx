@@ -16,7 +16,7 @@ import axios from "axios"; // Import axios
 import { useToast } from "@chakra-ui/react"; // Import useToast
 import url from "../../url";
 
-export const Experience = ({ downgradedPerformance = false }) => {
+export const Experience = ({ downgradedPerformance = false, onMouseUp ,onMouseDown }) => {
   const [players, setPlayers] = useState([]);
   const toast = useToast(); // Initialize toast
   const [showToast, setShowToast] = useState(false);
@@ -132,6 +132,8 @@ export const Experience = ({ downgradedPerformance = false }) => {
           onKilled={onKilled}
           onFire={onFire}
           downgradedPerformance={downgradedPerformance}
+          onMouseUp = {onMouseUp}
+          onMouseDown = {onMouseDown}
         />
       ))}
       {(isHost() ? bullets : networkBullets).map((bullet) => (
