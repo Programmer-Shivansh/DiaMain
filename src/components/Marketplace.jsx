@@ -81,7 +81,7 @@ export default function Marketplace() {
             title: 'Payment Success',
             description: response.data.message || 'Payment completed successfully!',
             status: 'success',
-            duration: 2000,
+            duration: 3000,
             isClosable: true,
         });
 

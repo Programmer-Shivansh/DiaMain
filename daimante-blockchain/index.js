@@ -89,8 +89,8 @@ app.post('/make-payment', async (req, res) => {
 
         // Submit the transaction
         const result = await server.submitTransaction(transaction);
-        console.log(`Payment made from ${senderPublicKey} to ${receiverPublicKey} with amount ${amount}`, result);
-        res.json({ message: `Payment of ${amount} DIAM made from ${senderPublicKey} successfully`, result });
+        console.log(`Payment made from ${senderPublicKey} to ${receiverPublicKey} with amount ${amount}`, result.id);
+        res.json({ message: `Payment of ${amount} DIAM made from ${senderPublicKey} successfully. Transaction ID ${result.id}`, result });
     } catch (error) {
         console.error('Error in make-payment:', error.response ? error.response.data : error.message);
         res.status(500).json({ error: error.response ? error.response.data : error.message });
@@ -135,7 +135,7 @@ app.post('/make-payment', async (req, res) => {
 app.post('/give-reward', async (req, res) => {
     try {
         const { senderSecret, receiverSecretKey, amount } = req.body;
-        console.log(`Received request to make payment from ${senderSecret} to ${receiverPublicKey} with amount ${amount}`);
+        // console.log(`Received request to make payment from ${senderSecret} to ${receiverPublicKey} with amount ${amount}`);
 
         const server = new Horizon.Server('https://diamtestnet.diamcircle.io/');
         const senderKeypair = Keypair.fromSecret(senderSecret);
@@ -165,7 +165,7 @@ app.post('/give-reward', async (req, res) => {
         // Submit the transaction
         const result = await server.submitTransaction(transaction);
         console.log(`Payment made from ${senderPublicKey} to ${receiverPublicKey} with amount ${amount}`, result);
-        res.json({ message: `Reward of ${amount} DIAM made to ${receiverPublicKey} successfully` });
+        res.json({ message: `Reward of ${amount} DIAM made to ${receiverPublicKey} successfully. Transaction ID ${result.id}` });
     } catch (error) {
         console.error('Error in make-payment:', error);
         res.status(500).json({ error: error.message });
