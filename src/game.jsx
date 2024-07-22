@@ -18,7 +18,7 @@ function Game() {
   const [downgradedPerformance, setDowngradedPerformance] = useState(false);
   const [isMarketplaceOpen, setIsMarketplaceOpen] = useState(false);
   const [isJoyStickClicked , setJoyStickClicked] = useState(true);
-  const publicKey = localStorage.getItem('publicKey') || '';
+  const SecretKey = localStorage.getItem('SecretKey') || '';
 
 
   const onMouseUp = ()=>{

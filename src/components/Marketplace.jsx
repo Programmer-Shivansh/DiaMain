@@ -7,14 +7,14 @@ import { useToast } from '@chakra-ui/react'; // Import useToast
 import url from '../../url';
 
 const weaponModels = {
-  Pistol: { path: '/models/Glock17.fbx', scale: [0.3, 0.3, 0.3], price: 300 },
-  Pistol2: { path: '/models/Phenoix.fbx', scale: [0.2, 0.2, 0.3], price: 350 },
-  AK: { path: '/models/AK-103.fbx', scale: [0.05, 0.05, 0.05], price: 1200 },
-  knife: { path: '/models/knife.fbx', scale: [0.1, 0.1, 0.1], price: 100 },
-  grinder: { path: '/models/grinder.fbx', scale: [0.2, 0.2, 0.2], price: 200 },
-  scar: { path: '/models/Scar.fbx', scale: [0.01, 0.01, 0.01], price: 1500 },
-  Phenoix: { path: '/models/New.fbx', scale: [0.15, 0.15, 0.15], price: 800 },
-  Snipper: { path: '/models/snipper.fbx', scale: [0.05, 0.05, 0.05], price: 1800 },
+  Pistol: { path: '/models/Glock17.fbx', scale: [0.3, 0.3, 0.3], price: 30 },
+  Pistol2: { path: '/models/Phenoix.fbx', scale: [0.2, 0.2, 0.3], price: 35 },
+  AK: { path: '/models/AK-103.fbx', scale: [0.05, 0.05, 0.05], price: 120 },
+  knife: { path: '/models/knife.fbx', scale: [0.1, 0.1, 0.1], price: 10 },
+  grinder: { path: '/models/grinder.fbx', scale: [0.2, 0.2, 0.2], price: 20 },
+  scar: { path: '/models/Scar.fbx', scale: [0.01, 0.01, 0.01], price: 150 },
+  Phenoix: { path: '/models/New.fbx', scale: [0.15, 0.15, 0.15], price: 80 },
+  Snipper: { path: '/models/snipper.fbx', scale: [0.05, 0.05, 0.05], price: 180 },
   // Add other models as needed
 };
 
@@ -56,21 +56,22 @@ export default function Marketplace() {
     console.log(`Price of ${weaponName}: $${weaponModels[weaponName].price}`);
 
     // Retrieve public and private keys from local storage
-    const publicKey = localStorage.getItem('publicKey');
+    const SecretKey = localStorage.getItem('SecretKey');
+    const publicKey = 'GDIONVXTDVTVAMRIL2AYNYORD3RD4YM2LEJUF4J6X36V636AF2WRWCTU'
     // const privateKey = localStorage.getItem('privateKey');
-    const privateKey = "SDBWZMZF4LHB5ZXUK6URQ4GAG5XNU4XDJ6BHATBOBESDIPXRDXVTMVB7";
+    // const privateKey = "SDBWZMZF4LHB5ZXUK6URQ4GAG5XNU4XDJ6BHATBOBESDIPXRDXVTMVB7";
     const price = `${weaponModels[weaponName].price}`;
 
     try {
         // Post request to /make-payment with weapon details and keys
         console.log('Making payment with:', {
-            senderSecret: privateKey,
+            senderSecret: SecretKey,
             receiverPublicKey: publicKey,
             amount: price
         });
 
         const response = await axios.post(`${url}/make-payment`, {
-            senderSecret: privateKey,
+            senderSecret: SecretKey,
             receiverPublicKey: publicKey,
             amount: price
         });

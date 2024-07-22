@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const DiamSdk = require('diamante-sdk-js');
 const {
     Keypair,
     TransactionBuilder,
@@ -53,34 +54,118 @@ app.post('/fund-account', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
-
 app.post('/make-payment', async (req, res) => {
     try {
         const { senderSecret, receiverPublicKey, amount } = req.body;
+        console.log(`Received request to make payment from ${senderSecret} to ${receiverPublicKey} with amount ${amount}`);
+        if (typeof senderSecret !== 'string' || typeof receiverPublicKey !== 'string' || typeof amount !== 'string' ) {
+            throw new Error('senderSecret and receiverPublicKey and amount must be strings');
+        }
+
+        const server = new DiamSdk.Horizon.Server('https://diamtestnet.diamcircle.io'); // Ensure URL is correct
+        const senderKeypair = DiamSdk.Keypair.fromSecret(senderSecret);
+        const senderPublicKey = senderKeypair.publicKey();
+
+        // Load sender's account
+        const account = await server.loadAccount(senderPublicKey);
+
+        // Create and build the transaction
+        const transaction = new DiamSdk.TransactionBuilder(account, {
+            fee: await server.fetchBaseFee(),
+            networkPassphrase: DiamSdk.Networks.TESTNET,
+        })
+            .addOperation(
+                DiamSdk.Operation.payment({
+                    destination: receiverPublicKey,
+                    asset: DiamSdk.Asset.native(),
+                    amount: (parseFloat(amount)).toFixed(7).toString() // Ensure amount is formatted correctly
+                })
+            )
+            .setTimeout(100) // Adjust timeout as needed
+            .build();
+
+        // Sign the transaction
+        transaction.sign(senderKeypair);
+
+        // Submit the transaction
+        const result = await server.submitTransaction(transaction);
+        console.log(`Payment made from ${senderPublicKey} to ${receiverPublicKey} with amount ${amount}`, result);
+        res.json({ message: `Payment of ${amount} DIAM made from ${senderPublicKey} successfully`, result });
+    } catch (error) {
+        console.error('Error in make-payment:', error.response ? error.response.data : error.message);
+        res.status(500).json({ error: error.response ? error.response.data : error.message });
+    }
+});
+
+
+// app.post('/make-payment', async (req, res) => {
+//     try {
+//         const { senderSecret, receiverPublicKey, amount } = req.body;
+//         console.log(`Received request to make payment from ${senderSecret} to ${receiverPublicKey} with amount ${amount}`);
+
+//         const server = new Horizon.Server('https://diamtestnet.diamcircle.io/');
+//         const senderKeypair = Keypair.fromSecret(senderSecret);
+//         const senderPublicKey = senderKeypair.publicKey();
+//         // console.log("first")
+//         const account = await server.loadAccount(senderPublicKey);
+//         // console.log("first")
+        
+//         const transaction = new TransactionBuilder(account, {
+//             fee: await server.fetchBaseFee(),
+//             networkPassphrase: Networks.TESTNET,
+//         })
+//             .addOperation(Operation.payment({
+//                 destination: receiverPublicKey,
+//                 asset: Asset.native(),
+//                 amount: amount,
+//             }))
+//             .setTimeout(30)
+//             .build();
+//         // console.log("second")
+//         transaction.sign(senderKeypair);
+//         const result = await server.submitTransaction(transaction);
+//         console.log(`Payment made from ${senderPublicKey} to ${receiverPublicKey} with amount ${amount}`, result);
+//         res.json({ message: `Payment of ${amount} DIAM made from ${senderPublicKey} successfully` });
+//     } catch (error) {
+//         console.error('Error in make-payment:', error);
+//         res.status(500).json({ error: error.message });
+//     }
+// });
+
+app.post('/give-reward', async (req, res) => {
+    try {
+        const { senderSecret, receiverSecretKey, amount } = req.body;
         console.log(`Received request to make payment from ${senderSecret} to ${receiverPublicKey} with amount ${amount}`);
 
         const server = new Horizon.Server('https://diamtestnet.diamcircle.io/');
         const senderKeypair = Keypair.fromSecret(senderSecret);
         const senderPublicKey = senderKeypair.publicKey();
+        const receiverKeypair = Keypair.fromSecret(receiverSecretKey);
+        const receiverPublicKey = receiverKeypair.publicKey();
         // console.log("first")
         const account = await server.loadAccount(senderPublicKey);
         // console.log("first")
-        const transaction = new TransactionBuilder(account, {
+        const transaction = new DiamSdk.TransactionBuilder(account, {
             fee: await server.fetchBaseFee(),
-            networkPassphrase: Networks.TESTNET,
+            networkPassphrase: DiamSdk.Networks.TESTNET,
         })
-            .addOperation(Operation.payment({
-                destination: receiverPublicKey,
-                asset: Asset.native(),
-                amount: amount,
-            }))
-            .setTimeout(30)
+            .addOperation(
+                DiamSdk.Operation.payment({
+                    destination: receiverPublicKey,
+                    asset: DiamSdk.Asset.native(),
+                    amount: (parseFloat(amount)).toFixed(7).toString() // Ensure amount is formatted correctly
+                })
+            )
+            .setTimeout(100) // Adjust timeout as needed
             .build();
-        // console.log("second")
+
+        // Sign the transaction
         transaction.sign(senderKeypair);
+
+        // Submit the transaction
         const result = await server.submitTransaction(transaction);
         console.log(`Payment made from ${senderPublicKey} to ${receiverPublicKey} with amount ${amount}`, result);
-        res.json({ message: `Payment of ${amount} DIAM made to ${receiverPublicKey} successfully` });
+        res.json({ message: `Reward of ${amount} DIAM made to ${receiverPublicKey} successfully` });
     } catch (error) {
         console.error('Error in make-payment:', error);
         res.status(500).json({ error: error.message });
@@ -117,6 +202,8 @@ app.post('/manage-data', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+
+
 
 app.post('/set-options', async (req, res) => {
     try {

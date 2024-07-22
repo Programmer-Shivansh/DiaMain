@@ -129,17 +129,17 @@ const CreateKeyModal = ({ isOpen, onClose, handleLogin, modalType }) => {
           ) : (
             <>
               <Input
-                placeholder="Enter Public Key"
-                value={publicKey}
-                onChange={(e) => setPublicKey(e.target.value)}
+                placeholder="Enter Secret Key"
+                value={privateKey}
+                onChange={(e) => setPrivateKey(e.target.value)}
                 className="mb-4 bg-black text-black"
               />
               <Button
                 colorScheme="blue"
-                onClick={() => handleLogin(publicKey)}
+                onClick={() => handleLogin(privateKey)}
                 className="w-full"
               >
-                Login with Public Key
+                Login with Secret Key
               </Button>
             </>
           )}

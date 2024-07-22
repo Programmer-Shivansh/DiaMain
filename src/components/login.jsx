@@ -8,7 +8,7 @@ import { userDataAtom } from '../atoms/public';
 
 export function Login() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [publicKey, setPublicKey] = useState('');
+  const [SecretKey, setSecretKey] = useState('');
   const [publics,setpublics]= useRecoilState(userDataAtom);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [modalType, setModalType] = useState(''); // State to differentiate modal types
@@ -17,13 +17,14 @@ export function Login() {
 
   const handleLogin = (key) => {
     if (key) {
-      localStorage.setItem('publicKey', key);
+      // console.log(key)
+      localStorage.setItem('SecretKey', key);
       setpublics(key); // Update the public key in the user data state
-      setPublicKey(key);
+      setSecretKey(key);
       setIsLoggedIn(true);
       toast({
         title: 'Logged In',
-        description: `You are now logged in with the public key: ${key}`,
+        description: `You are now logged in with the Secret key: ${key}`,
         status: 'success',
         duration: 2000,
         isClosable: true,
@@ -32,7 +33,7 @@ export function Login() {
     } else {
       toast({
         title: 'Error',
-        description: 'Please enter a public key.',
+        description: 'Please enter a Secret key.',
         status: 'error',
         duration: 2000,
         isClosable: true,
@@ -80,7 +81,7 @@ export function Login() {
           </Button>
         </div>
         <div className="fixed top-4 right-4 bg-black text-green-500 p-2 rounded-md">
-          {isLoggedIn ? `Public Key: ${publicKey.slice(0, 4)}...` : 'Not Logged In'}
+          {isLoggedIn ? `Secret Key: ${SecretKey.slice(0, 4)}...` : 'Not Logged In'}
         </div>
       </Vortex>
       <CreateKeyModal 
@@ -100,7 +101,7 @@ export function Login() {
 // import { useNavigate } from 'react-router-dom';
 
 // export function Login() {
-//   const [publicKey, setPublicKey] = useState('');
+//   const [SecretKey, setSecretKey] = useState('');
 //   const [isLoggedIn, setIsLoggedIn] = useState(false);
 //   const [modalType, setModalType] = useState(''); // Add state to handle modal type
 //   const toast = useToast();
@@ -110,8 +111,8 @@ export function Login() {
 
 //   const handleLogin = (key) => {
 //     if (key) {
-//       localStorage.setItem('publicKey', key);
-//       setPublicKey(key);
+//       localStorage.setItem('SecretKey', key);
+//       setSecretKey(key);
 //       setIsLoggedIn(true);
 //       toast({
 //         title: 'Logged In',
@@ -172,7 +173,7 @@ export function Login() {
 //           </Button>
 //         </div>
 //         <div className="fixed top-4 right-4 bg-black text-green-500 p-2 rounded-md">
-//           {isLoggedIn ? `Public Key: ${publicKey.slice(0, 4)}...` : 'Not Logged In'}
+//           {isLoggedIn ? `Public Key: ${SecretKey.slice(0, 4)}...` : 'Not Logged In'}
 //         </div>
 //       </Vortex>
 //       <CreateKeyModal 
@@ -193,18 +194,18 @@ export function Login() {
 
 // export function Login() {
 //   const { isOpen, onOpen, onClose } = useDisclosure();
-//   const [publicKey, setPublicKey] = useState('');
+//   const [SecretKey, setSecretKey] = useState('');
 //   const [isLoggedIn, setIsLoggedIn] = useState(false);
 //   const toast = useToast();
 //   const navigate = useNavigate();
 
 //   const handleLogin = () => {
-//     if (publicKey) {
-//       localStorage.setItem('publicKey', publicKey);
+//     if (SecretKey) {
+//       localStorage.setItem('SecretKey', SecretKey);
 //       setIsLoggedIn(true);
 //       toast({
 //         title: 'Logged In',
-//         description: `You are now logged in with the public key: ${publicKey}`,
+//         description: `You are now logged in with the public key: ${SecretKey}`,
 //         status: 'success',
 //         duration: 2000,
 //         isClosable: true,
@@ -251,15 +252,15 @@ export function Login() {
 //           </Button>
 //         </div>
 //         <div className="fixed top-4 right-4 bg-black text-green-500 p-2 rounded-md">
-//           {isLoggedIn ? `Public Key: ${publicKey.slice(0, 4)}...` : 'Not Logged In'}
+//           {isLoggedIn ? `Public Key: ${SecretKey.slice(0, 4)}...` : 'Not Logged In'}
 //         </div>
 //       </Vortex>
 //       <CreateKeyModal isOpen={isOpen} onClose={onClose} />
 //       {/* <div className="fixed top-1/2 right-4 transform -translate-y-1/2">
 //         <Input
 //           placeholder="Enter Public Key"
-//           value={publicKey}
-//           onChange={(e) => setPublicKey(e.target.value)}
+//           value={SecretKey}
+//           onChange={(e) => setSecretKey(e.target.value)}
 //           className="mb-4"
 //         />
 //         <Button colorScheme="blue" >

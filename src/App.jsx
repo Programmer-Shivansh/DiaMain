@@ -9,17 +9,12 @@ import { userDataAtom } from './atoms/public';
 
 
 function App() {
-  const publicKey = useRecoilValue(userDataAtom);
-
-
-
-
+  const SecretKey = useRecoilValue(userDataAtom);
   return (
     <ChakraProvider>
-
       <Routes>
-        <Route path="/login" element={publicKey?<Navigate to={'/'}/>:<Login/>} />
-        <Route path="/" element={!publicKey?<Navigate to={'/login'}/>:<Game/>} />
+        <Route path="/login" element={SecretKey?<Navigate to={'/'}/>:<Login/>} />
+        <Route path="/" element={!SecretKey?<Navigate to={'/login'}/>:<Game/>} />
       </Routes>
     </ChakraProvider>
   );

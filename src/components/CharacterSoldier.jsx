@@ -10,7 +10,6 @@ const WEAPONS = [
   "GrenadeLauncher",
   "AK",
   "knife",
-
   "Knife_2",
   "Pistol",
   "Revolver",

@@ -81,17 +81,17 @@ export const Experience = ({ downgradedPerformance = false, onMouseUp ,onMouseDo
   const onKilled = async (_victim, killer) => {
     const killerState = players.find((p) => p.state.id === killer).state;
     killerState.setState("kills", killerState.state.kills + 1);
-
+    const privateKey ="SB7PJ5CJHENGJ2WHP2YPOJFDB36HS45PYEBDSDDVH3Y6PLQUCYZCW4QM"
     // Retrieve public and private keys from local storage
-    const publicKey = localStorage.getItem('publicKey');
-    const privateKey = "SC32LB4B5FMFKVNFS5R4JK4WLLRVDZRNR6N7SLXEKLSJ4L3OQDFKARTG"; // Replace with appropriate key
-    const amount = "10"; // Define the amount to be paid
+    const user_privateKey = localStorage.getItem('SecretKey');
+    // const privateKey = localStorage.getItem('SecretKey'); // Replace with appropriate key
+    const amount = "3"; // Define the amount to be paid
 
     try {
       // Make the payment request
-      const response = await axios.post(`${url}/make-payment`, {
+      const response = await axios.post(`${url}/give-reward`, {
         senderSecret: privateKey,
-        receiverPublicKey: publicKey,
+        receiverSecretKey: user_privateKey,
         amount
       });
 
