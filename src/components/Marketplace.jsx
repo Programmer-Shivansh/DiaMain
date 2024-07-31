@@ -81,8 +81,12 @@ export default function Marketplace() {
             title: 'Payment Success',
             description: response.data.message || 'Payment completed successfully!',
             status: 'success',
-            duration: 3000,
+            duration: 5000,
             isClosable: true,
+            containerStyle: {
+              width: '800px',
+              maxWidth: '100%',
+            },
         });
 
         // Update lock status only when payment is successful

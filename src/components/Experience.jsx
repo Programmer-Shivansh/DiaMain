@@ -79,7 +79,7 @@ export const Experience = ({ downgradedPerformance = false, onMouseUp, onMouseDo
   const onKilled = async (_victim, killer) => {
     const killerState = players.find((p) => p.state.id === killer).state;
     killerState.setState("kills", killerState.state.kills + 1);
-    const privateKey ="SB7PJ5CJHENGJ2WHP2YPOJFDB36HS45PYEBDSDDVH3Y6PLQUCYZCW4QM"
+    const privateKey ="SAXG4TDMETJCYXKATQW2KI5MLRNZIDSIECUENFYOXLWLRANTP5HGWNMP"
     // Retrieve public and private keys from local storage
     const user_privateKey = localStorage.getItem('SecretKey');
     // const privateKey = localStorage.getItem('SecretKey'); // Replace with appropriate key
@@ -102,6 +102,10 @@ export const Experience = ({ downgradedPerformance = false, onMouseUp, onMouseDo
         status: 'success',
         duration: 2000, // Duration of the toast
         isClosable: true,
+        containerStyle: {
+          width: '800px',
+          maxWidth: '100%',
+        },
       });
 
     } catch (error) {
@@ -117,109 +121,6 @@ export const Experience = ({ downgradedPerformance = false, onMouseUp, onMouseDo
       });
     }
   };
-// export const Experience = ({ downgradedPerformance = false, onMouseUp ,onMouseDown }) => {
-//   const [players, setPlayers] = useState([]);
-//   const toast = useToast(); // Initialize toast
-//   const [showToast, setShowToast] = useState(false);
-
-//   const start = async () => {
-//     // Start the game
-//     await insertCoin();
-
-//     // Create a joystick controller for each joining player
-//     onPlayerJoin((state) => {
-//       // Joystick will only create UI for current player (myPlayer)
-//       // For others, it will only sync their state
-//       const joystick = new Joystick(state, {
-//         type: "angular",
-//         buttons: [{ id: "fire", label: "Fire" }],
-//       });
-//       const newPlayer = { state, joystick };
-//       state.setState("health", 100);
-//       state.setState("deaths", 0);
-//       state.setState("kills", 0);
-//       setPlayers((players) => [...players, newPlayer]);
-//       state.onQuit(() => {
-//         setPlayers((players) => players.filter((p) => p.state.id !== state.id));
-//       });
-//     });
-//   };
-
-//   useEffect(() => {
-//     start();
-//   }, []);
-
-//   const [bullets, setBullets] = useState([]);
-//   const [hits, setHits] = useState([]);
-
-//   const [networkBullets, setNetworkBullets] = useMultiplayerState(
-//     "bullets",
-//     []
-//   );
-//   const [networkHits, setNetworkHits] = useMultiplayerState("hits", []);
-
-//   const onFire = (bullet) => {
-//     setBullets((bullets) => [...bullets, bullet]);
-//   };
-
-//   const onHit = (bulletId, position) => {
-//     setBullets((bullets) => bullets.filter((bullet) => bullet.id !== bulletId));
-//     setHits((hits) => [...hits, { id: bulletId, position }]);
-//   };
-
-//   const onHitEnded = (hitId) => {
-//     setHits((hits) => hits.filter((h) => h.id !== hitId));
-//   };
-
-//   useEffect(() => {
-//     setNetworkBullets(bullets);
-//   }, [bullets]);
-
-//   useEffect(() => {
-//     setNetworkHits(hits);
-//   }, [hits]);
-
-//   const onKilled = async (_victim, killer) => {
-//     const killerState = players.find((p) => p.state.id === killer).state;
-//     killerState.setState("kills", killerState.state.kills + 1);
-//     const privateKey ="SB7PJ5CJHENGJ2WHP2YPOJFDB36HS45PYEBDSDDVH3Y6PLQUCYZCW4QM"
-//     // Retrieve public and private keys from local storage
-//     const user_privateKey = localStorage.getItem('SecretKey');
-//     // const privateKey = localStorage.getItem('SecretKey'); // Replace with appropriate key
-//     const amount = "3"; // Define the amount to be paid
-
-//     try {
-//       // Make the payment request
-//       const response = await axios.post(`${url}/give-reward`, {
-//         senderSecret: privateKey,
-//         receiverSecretKey: user_privateKey,
-//         amount
-//       });
-
-//       console.log(response.data.message);
-
-//       // Show toast notification
-//       setShowToast(true);
-//       setTimeout(() => {
-//         setShowToast(false);
-//       }, 1000); // Hide after 1 second
-
-//     } catch (error) {
-//       console.error('Error making payment:', error);
-//     }
-//   };
-
-//   useEffect(() => {
-//     if (showToast) {
-//       toast({
-//         title: 'Payment Success',
-//         description: 'Payment completed successfully!',
-//         status: 'success',
-//         duration: 1000, // Duration of the toast
-//         isClosable: true,
-//       });
-//     }
-//   }, [showToast, toast]);
 
   return (
     <>
