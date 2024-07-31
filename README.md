@@ -23,7 +23,7 @@ Daichain Warfare leverages blockchain technology to provide a secure, transparen
 
 [![Watch the Tutorial Video](https://img.youtube.com/vi/EWkw6Vy4bXE/0.jpg)](https://www.youtube.com/watch?v=EWkw6Vy4bXE)
 
-- #CLICK ON THE PHOTO TO WATCH THE VIDEO
+- # CLICK ON THE PHOTO TO WATCH THE VIDEO
 
 ## Features
 
