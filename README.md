@@ -1,13 +1,13 @@
 <p align="center">
   <img src="public/images/logo.jpeg" alt="Daichain Warfare Logo" width="100" height="90" align="left"/>
-  <h1>Diachain Warfare</h1>
+  <h1>Daichain Warfare</h1>
 </p>
 
 Daichain Warfare leverages blockchain technology to provide a secure, transparent, and rewarding multiplayer shooter gaming experience. Integrated with the Diamante blockchain, it introduces features like secure asset ownership, provably fair gameplay mechanics via smart contracts, and a Diamante marketplace for purchasing in-game items. Our project aims to redefine player interaction and ownership rights in gaming through innovative blockchain integration.
 
-
 ## Table of Contents
 
+- [Video Tutorial](#video-tutorial)
 - [Features](#features)
 - [How It Works](#how-it-works)
   - [Gameplay Interface](#gameplay-interface)
@@ -17,6 +17,10 @@ Daichain Warfare leverages blockchain technology to provide a secure, transparen
 - [Project Links](#project-links)
 - [Team](#team)
 - [Technologies Used](#technologies-used)
+
+## Video Tutorial
+
+[![Watch the Tutorial Video](https://img.youtube.com/vi/EWkw6Vy4bXE/0.jpg)](https://www.youtube.com/watch?v=EWkw6Vy4bXE)
 
 ## Features
 
@@ -41,7 +45,7 @@ Daichain Warfare leverages blockchain technology to provide a secure, transparen
 ![Gameplay Screenshot 2](public/images/game-screen.jpeg)
 *Another shot of players in action, demonstrating the dynamic environment and interactions.*
 
-![Gameplay Screenshot 3](public/images/logo.jpeg)
+![Gameplay Screenshot 3](public/images/gameplay.jpeg)
 *Further illustration of the multiplayer experience and interface.*
 
 ## Local Setup
@@ -58,26 +62,29 @@ To set up Daichain Warfare locally, follow these steps:
     ```sh
     yarn
     ```
-4. **Start the blockchain server:**
+
+3. **Start the blockchain server:**
     ```sh
     cd diamante-blockchain
-    yarn 
-    yarn dev 
+    yarn
+    yarn dev
     ```
 
-3. **Start the development server:**
+4. **Start the development server:**
     ```sh
     cd ..
-    yarn dev 
+    yarn dev
     ```
+
 5. **Access the game:**
     Open your web browser and go to `http://localhost:5173`.
 
 ## Project Links
 
-- **GitHub Repository**: [Daichain Warfare Repository](https://github.com/Tanishq1604/DiaMain)
+- [Tutorial Video](https://www.youtube.com/watch?v=EWkw6Vy4bXE)
+- [DevFolio Links](https://devfolio.co/projects/daichain-warfare-a47e)
 
-## Team[ChainChamps]
+## Team [ChainChamps]
 
 - **Shivansh Chauhan**
 - **Ujjwal Parashar**
